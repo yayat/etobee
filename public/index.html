@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" ng-app="phonecatApp">
+<head>
+	<meta charset="utf-8">
+	<title>Test Etobee</title>
+	<link rel="stylesheet" href="libs/bower_components/bootstrap/dist/css/bootstrap.css" />
+	<script src="libs/bower_components/bower-angularjs/angular.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body ng-controller="PhoneListController">
+
+<ul>
+	<li ng-repeat="phone in phones">
+		<span>{{phone.name}}</span>
+		<p>{{phone.snippet}}</p>
+	</li>
+</ul>
+
+</body>
+</html>

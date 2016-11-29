@@ -1,0 +1,16 @@
+{
+  "name": "test-etobee",
+  "author": "Yayat",
+  "description": "untuk test etobee",
+  "dependencies" : {
+    "express": "*",
+    "@google/maps": "*",
+    "mysql": "*",
+    "body-parser": "*",
+    "multer": "*",
+    "consolidate": "*"
+  },
+  "engines": {
+    "node": ">=0.30"
+  }
+}
