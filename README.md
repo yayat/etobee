@@ -35,6 +35,14 @@ D. example:
           "opennow": true,
           "type": "restaurant"
         }
+===============================================
+  - DIRECTION
+  url: http://128.199.72.133:2434/map/direction,
+  method: 'POST',
+  data: {
+	    "origin": "bandung",
+	    "destination": "jakarta"
+	}
         
 
 ```
