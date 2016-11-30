@@ -1,7 +1,7 @@
 /**
  * Created by Yayat on 11/29/16.
  */
-var cfg = require('./config/config')
+var cfg = require('./config')
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser');

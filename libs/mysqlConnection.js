@@ -2,7 +2,7 @@
  * Created by Yayat on 11/29/16.
  */
 var mysql   = require('mysql'),
-	cfg     = require('./../config/config');
+	cfg     = require('./../config');
 var path = require('path');
 var connection = mysql.createConnection({
 	host     : cfg.mysql.dbHost,
