@@ -8,7 +8,10 @@
 	<title>Index</title>
 	<script src="libs/bower_components/jquery/dist/jquery.js"></script>
 	<script src="libs/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="libs/bower_components/bower-angularjs/angular.js"></script>
 	<script type="text/javascript" src="libs/bower_components/gmap3/dist/gmap3.js"></script>
+	<script type="text/javascript" src="js/controller/searchMap.js"></script>
+
 	<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Raleway:100,200,300,400,500,600,700,800,900,200i,300i,400i,500i">
 	<link href="fonts/font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -20,7 +23,37 @@
 
 </nav>
 <div id="wrapper">
+	<div id="body-overlay"></div>
+	<!--sidbar-->
+	<div id="sidebar" class="moduleToShow"></div>
+	<div id="wrap">
+		<div class="container dashboard">
+			<div class="wrapper-dashboard">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="profile-categories">
+							<!--disini search-->
 
+						</div>
+						<div class="panel-style space custom-menu no-pad-r m-bot-30 m-top-30">
+							<span class="grey-title">CUSTOM MENU</span>
+							<!--disini untuk keterangan-->
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="white-panel-widget clearfix m-sidebar m-bot-30 no-pad">
+							<div class="average-statistics-wrapper row no-margin">
+								<!--disini untuk map-->
+								<div id="map"></div>
+							</div>
+							<!--<div id="myfirstchart" style="height: 250px;"></div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 
 <div id="footer">
