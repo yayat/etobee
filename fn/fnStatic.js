@@ -1,7 +1,7 @@
 /**
  * Created by Yayat on 11/29/16.
  */
-var cfg = require('./../config')
+var cfg = require('./../cfg')
 var googleMapsClient = require('@google/maps')
 var map = googleMapsClient.createClient({
 	key: cfg.google.apikey
