@@ -3,7 +3,7 @@
  */
 module.exports = {
 	serverHost      : 'localhost',
-	serverPort      : 3000,
+	serverPort      : 2434,
 	mysql: {
 		active: {
 			status: true,
