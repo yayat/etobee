@@ -1,97 +1,73 @@
-/**
- * Created by Yayat on 11/30/16.
- */
-$('#map').gmap3({
-	map:{
-		options: {
-			center: center,
+angular.module('main', ['uiGmapgoogle-maps','nemLogging'])
+	.config(function(uiGmapGoogleMapApiProvider) {
+		uiGmapGoogleMapApiProvider.configure({
+			key: 'AIzaSyA_tLqDyHCEUpNg8T7tlLwagVv-WgdF4RY'
+		});
+	})
+	.factory('useGlobal', function () {
+		var place;
+		$.ajax({
+			url: '/api/read',
+			method: 'POST',
+			data: {
+				"table": "place"
+			},
+			success: function (item) {
+				var toPush = []
+				item.data.forEach(function (dat) {
+					toPush.push({
+						id: dat.id,
+						latitude: dat.lat,
+						longitude: dat.lang
+					})
+				})
+				place = toPush
+			},
+			error: function () {
+
+			},
+			async: false
+		})
+		return place
+	}).factory('dataDetail', function () {
+	var place;
+	$.ajax({
+		url: '/api/read',
+		method: 'POST',
+		data: {
+			"table": "place"
+		},
+		success: function (item) {
+			place = item
+		},
+		error: function () {
+
+		},
+		async: false
+	})
+	return place
+})
+	.controller('mainController', function($scope,uiGmapGoogleMapApi, useGlobal) {
+		$scope.map = {
+			center: {
+				latitude: -1.6878834,
+				longitude: 113.0425407
+			},
 			zoom: 5
-//				mapTypeId: google.maps.MapTypeId.TERRAIN
+		};
+		$scope.options = { scrollwheel: false };
+		$scope.randomMarkers = useGlobal
+		console.log($scope.randomMarkers)
+		uiGmapGoogleMapApi.then(function (maps) {
+
+		});
+	})
+	.controller('test', function ($scope) {
+		$scope.name = {
+			name: "Yayat",
+			last: "Ruhiat"
 		}
-	},
-	marker: {
-		values: macDoList,
-		cluster: {
-			radius:5,
-			// This style will be used for clusters with more than 0 markers
-			0: {
-				content: '<div class="cluster cluster-1">CLUSTER_COUNT</div>',
-				width: 53,
-				height: 52
-			},
-			// This style will be used for clusters with more than 20 markers
-			20: {
-				content: '<div class="cluster cluster-2">CLUSTER_COUNT</div>',
-				width: 56,
-				height: 55
-			},
-			// This style will be used for clusters with more than 50 markers
-			50: {
-				content: '<div class="cluster cluster-3">CLUSTER_COUNT</div>',
-				width: 66,
-				height: 65
-			},
-			events: {
-				click: function(cluster) {
-					var map = $(this).gmap3("get");
-					map.setCenter(cluster.main.getPosition());
-					map.setZoom(map.getZoom() + 1);
-				}
-			}
-		},
-		options: {
-			icon: '../assets/img/icon_resto.png'
-		},
-		events:{
-//				mouseover: function(marker, event, context){
-//					$(this).gmap3(
-//						{clear:"overlay"},
-//						{
-//							overlay:{
-//								latLng: marker.getPosition(),
-//								options:{
-//									content:  "<div class='infobulle"+(context.data.drive ? " drive" : "")+"'>" +
-//									          "<div class='bg'></div>" +
-//									          "<div class='text'>" +
-//									          "<img style='width: 70px; height: 60px; float: left; padding-right: 10px; padding-left: -10px !important;' src='"+context.data.image+"'>" +
-//									          "<span style='font-weight: bold; font-size: 14px'>" + context.data.username + "</span><br/>" +
-//									          "<span>contact: " + context.data.contact_name + " (" + context.data.contact_phone +")</span><br/>" +
-//									          "<span>Open: " + context.data.open_time + "-" + context.data.close_time +"</span>" +
-//									          "</div>" +
-//									          "</div>" +
-//									          "<div class='arrow'></div>",
-//									offset: {
-//										x:-30,
-//										y:-73
-//									}
-//								}
-//							}
-//						});
-//				},
-//				mouseout: function(){
-//					$(this).gmap3({clear:"overlay"});
-//				}
-			mouseover: function(marker, event, context){
-				var map = $(this).gmap3("get"),
-					infowindow = $(this).gmap3({get:{name:"infowindow"}});
-				if (infowindow){
-					infowindow.open(map, marker);
-					infowindow.setContent(context.data.username);
-				} else {
-					$(this).gmap3({
-						infowindow:{
-							anchor:marker,
-							options:{content: context.data}
-						}
-					});
-				}
-			},
-			mouseout: function(){
-				var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-				if (infowindow){
-					infowindow.close();
-				}
-			}
-		}
-	}
-});
+	})
+	.controller('notes', function ($scope, dataDetail) {
+		$scope.detail = dataDetail.data
+	})
