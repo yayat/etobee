@@ -33,7 +33,7 @@
 		}
 	</style>
 </head>
-<body>
+<body  ng-controller="mainController">
 <nav class="navbar navbar-default" role="navigation">
 
 </nav>
@@ -46,16 +46,21 @@
 			<div class="wrapper-dashboard">
 				<div class="row">
 					<div class="col-md-3">
-						<div class="profile-categories" ng-controller="test">
+						<div class="profile-categories">
 							<!--disini search-->
 							etobee | {{name.name + ' ' + name.last}}
 						</div>
-						<div class="panel-style space custom-menu no-pad-r m-bot-30 m-top-30" ng-controller="notes">
-							<span class="grey-title">NOTES</span>
+						<div class="panel-style space custom-menu no-pad-r m-bot-30 m-top-30">
+							<span class="grey-title">Detail</span>
+							<form name="myForm" class="my-form">
+								Search: <input name="input" ng-model="userType">
+								<button ng-click="clickSearch()">Search</button> <button ng-click="clickNew()">New</button>
+							</form>
 							<!--disini untuk keterangan-->
 							<ul>
 								<li ng-repeat="detail in detail">
 									<span>{{detail.place_name}}</span>
+									<button ng-click="clickUpdate(detail.place_name)">Update</button> <button ng-click="clickDelete(detail.place_name)">Delete</button>
 									<p>Latitude: {{detail.lat}}</p>
 									<p>Longitude: {{detail.lang}}</p>
 								</li>
@@ -65,7 +70,7 @@
 					</div>
 					<div class="col-md-9">
 						<div class="white-panel-widget clearfix m-sidebar m-bot-30 no-pad">
-							<div id="map_canvas" ng-controller="mainController">
+							<div id="map_canvas" >
 								<ui-gmap-google-map center="map.center"
 								                    zoom="map.zoom"
 								                    draggable="true"
@@ -73,7 +78,8 @@
 									<ui-gmap-markers
 										models="randomMarkers"
 										coords="'self'"
-										icon="'icon'">
+										icon="'icon'"
+									>
 									</ui-gmap-markers>
 								</ui-gmap-google-map>
 
@@ -94,6 +100,105 @@
 				<li><a href="https://plus.google.com/102998706491698202817">Yayat Ruhiat</a><span>&#8226;</span></li>
 
 			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade display-none" id="modal-legend" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content modalBodyGeneral">
+			<!-- // Modal heading END -->
+			<!-- Modal body -->
+			<div class="modalBody">
+				<table>
+					<tr>
+						<td>Place Name</td>
+						<td>:</td>
+						<td><input name="input" ng-model="place_name"></td>
+					</tr>
+					<tr>
+						<td>Latitude</td>
+						<td>:</td>
+						<td><input name="input" ng-model="lat"></td>
+					</tr>
+					<tr>
+						<td>Langitude</td>
+						<td>:</td>
+						<td><input name="input" ng-model="long"></td>
+					</tr>
+				</table>
+				<button ng-click="clickSave()">Save</button>
+			</div>
+			<!-- // Modal body END -->
+		</div>
+	</div>
+</div>
+<div class="modal fade display-none" id="modal-legend2" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content modalBodyGeneral">
+			<!-- // Modal heading END -->
+			<!-- Modal body -->
+			<div class="modalBody">
+				<table>
+					<tr>
+						<td>Id</td>
+						<td>:</td>
+						<td><input name="input" ng-model="id" disabled></td>
+					</tr>
+					<tr>
+						<td>Place Name</td>
+						<td>:</td>
+						<td><input name="input" ng-model="place_name"></td>
+					</tr>
+					<tr>
+						<td>Latitude</td>
+						<td>:</td>
+						<td><input name="input" ng-model="lat"></td>
+					</tr>
+					<tr>
+						<td>Langitude</td>
+						<td>:</td>
+						<td><input name="input" ng-model="long"></td>
+					</tr>
+				</table>
+				<button ng-click="saveUpdate()">Update</button>
+			</div>
+			<!-- // Modal body END -->
+		</div>
+	</div>
+</div>
+<div class="modal fade display-none" id="modal-legend3" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content modalBodyGeneral">
+			<!-- // Modal heading END -->
+			<!-- Modal body -->
+			<div class="modalBody">
+				Are you sure to delete this ?
+				<table>
+					<tr>
+						<td>Id</td>
+						<td>:</td>
+						<td><input name="input" ng-model="id" disabled></td>
+					</tr>
+					<tr>
+						<td>Place Name</td>
+						<td>:</td>
+						<td><input name="input" ng-model="place_name" disabled></td>
+					</tr>
+					<tr>
+						<td>Latitude</td>
+						<td>:</td>
+						<td><input name="input" ng-model="lat" disabled></td>
+					</tr>
+					<tr>
+						<td>Langitude</td>
+						<td>:</td>
+						<td><input name="input" ng-model="long" disabled></td>
+					</tr>
+				</table>
+				<button ng-click="saveDelete()">Delete</button>
+			</div>
+			<!-- // Modal body END -->
 		</div>
 	</div>
 </div>
